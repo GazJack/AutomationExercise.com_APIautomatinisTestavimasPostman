@@ -1,0 +1,1093 @@
+{
+	"info": {
+		"_postman_id": "abcc2fb3-418d-4093-8c65-7273892f85b6",
+		"name": "Automation Exercise.com_API automatinis testavimas Agn",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41095196"
+	},
+	"item": [
+		{
+			"name": "Get All Products List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// respData-kintamasis | json paverčiu į javascript objektą\r",
+							"const respData = pm.response.json();\r",
+							"\r",
+							"// tikrinu žalią 200 ok\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+							"});\r",
+							"\r",
+							"// tikrinu json įrašytą responseCode\r",
+							"pm.test(\"Response JSON has responseCode and it's 200\", function () {\r",
+							"    pm.expect(respData).to.have.property('responseCode'); \r",
+							"    pm.expect(respData.responseCode).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Products are not empty', () => {\r",
+							"    pm.expect(respData.products).to.be.an('array').that.is.not.empty;\r",
+							"    respData.products.forEach((product) => {\r",
+							"        pm.expect(product).to.have.property('id');\r",
+							"        pm.expect(product).to.have.property('name');\r",
+							"        pm.expect(product).to.have.property('price');\r",
+							"        pm.expect(product).to.have.property('brand');\r",
+							"        // sitoj vietoj nebesuprantu kaip rasyti\r",
+							"        pm.expect(product).to.have.property('category');\r",
+							"        pm.expect(product.category).to.have.property('usertype');\r",
+							"        // kodel pas Agne sitas yra?\r",
+							"        pm.expect(product.category).to.have.property('category');\r",
+							"    })\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}productsList",
+					"host": [
+						"{{base_url}}productsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post All Products List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const respData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON has responseCode and it's 405\", function () {\r",
+							"    pm.expect(respData).to.have.property('responseCode');\r",
+							"    pm.expect(respData.responseCode).to.eql(405);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}productsList",
+					"host": [
+						"{{base_url}}productsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Brands List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const respData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON has responseCode and it's 200\", function () {\r",
+							"    pm.expect(respData).to.have.property('responseCode');\r",
+							"    pm.expect(respData.responseCode).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Products are not empty', () => {\r",
+							"    pm.expect(respData.brands).to.be.an('array').that.is.not.empty;\r",
+							"    respData.brands.forEach((brand) => {\r",
+							"        pm.expect(brand).to.have.property('id');\r",
+							"        pm.expect(brand).to.have.property('brand');\r",
+							"    })\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}brandsList",
+					"host": [
+						"{{base_url}}brandsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put to All Brands List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const respData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON has responseCode and it's 405\", function () {\r",
+							"    pm.expect(respData).to.have.property('responseCode');\r",
+							"    pm.expect(respData.responseCode).to.eql(405);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}brandsList",
+					"host": [
+						"{{base_url}}brandsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post to Search Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const respData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON has responseCode and it's 200\", function () {\r",
+							"    pm.expect(respData).to.have.property('responseCode');\r",
+							"    pm.expect(respData.responseCode).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Products are not empty', () => {\r",
+							"    pm.expect(respData.products).to.be.an('array').that.is.not.empty;\r",
+							"    respData.products.forEach((product) => {\r",
+							"        pm.expect(product).to.have.property('id');\r",
+							"        pm.expect(product).to.have.property('name');\r",
+							"        pm.expect(product).to.have.property('price');\r",
+							"        pm.expect(product).to.have.property('brand');\r",
+							"        pm.expect(product).to.have.property('category');\r",
+							"        pm.expect(product.category).to.have.property('usertype');\r",
+							"        pm.expect(product.category).to.have.property('category');\r",
+							"    })\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "search_product",
+							"value": "dress",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}searchProduct",
+					"host": [
+						"{{base_url}}searchProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "??? POST To Search Product without search_product parameter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const respData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON has responseCode and it's 200\", function () {\r",
+							"    pm.expect(respData).to.have.property('responseCode');\r",
+							"    pm.expect(respData.responseCode).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Products are not empty', () => {\r",
+							"    pm.expect(respData.products).to.be.an('array').that.is.not.empty;\r",
+							"    respData.products.forEach((product) => {\r",
+							"        pm.expect(product).to.have.property('id');\r",
+							"        pm.expect(product).to.have.property('name');\r",
+							"        pm.expect(product).to.have.property('price');\r",
+							"        pm.expect(product).to.have.property('brand');\r",
+							"        // sitoj vietoj nebesuprantu kaip rasyti\r",
+							"        pm.expect(product).to.have.property('category');\r",
+							"        pm.expect(product.category).to.have.property('usertype');\r",
+							"        // kodel pas Agne sitas yra?\r",
+							"        pm.expect(product.category).to.have.property('category');\r",
+							"    })\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "search_product",
+							"value": "top",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}searchProduct",
+					"host": [
+						"{{base_url}}searchProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST To Verify Login with valid details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const respData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON has responseCode and it's 200\", function () {\r",
+							"    pm.expect(respData).to.have.property('responseCode');\r",
+							"    pm.expect(respData.responseCode).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "john.smith2@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "passs",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}verifyLogin",
+					"host": [
+						"{{base_url}}verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "??? ReikiaTikPassIrManNe405GaunasiPOST To Verify Login without email parameter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const respData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON has responseCode and it's 405\", function () {\r",
+							"    pm.expect(respData).to.have.property('responseCode');\r",
+							"    pm.expect(respData.responseCode).to.eql(405);\r",
+							"});\r",
+							"\r",
+							"// tureciau gauti:\r",
+							"// {\"responseCode\": 405, \"message\": \"This request method is not supported.\"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "password",
+							"value": "passs",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}verifyLogin",
+					"host": [
+						"{{base_url}}verifyLogin"
+					],
+					"query": [
+						{
+							"key": "password",
+							"value": "passs",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "??? cia kazkas turejo ivykt? error 405 DELETE To Verify Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const respData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON has responseCode and it's 204\", function () {\r",
+							"    pm.expect(respData).to.have.property('responseCode');\r",
+							"    pm.expect(respData.responseCode).to.eql(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "john.smith2@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "passs",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}verifyLogin",
+					"host": [
+						"{{base_url}}verifyLogin"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "john.smith2@gmail.com",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "passs",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST To Verify Login with invalid details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const respData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON has responseCode and it's 404\", function () {\r",
+							"    pm.expect(respData).to.have.property('responseCode');\r",
+							"    pm.expect(respData.responseCode).to.eql(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "john@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "passw",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}verifyLogin",
+					"host": [
+						"{{base_url}}verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST To Create/Register User Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const respData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON has responseCode and it's 201\", function () {\r",
+							"    pm.expect(respData).to.have.property('responseCode');\r",
+							"    pm.expect(respData.responseCode).to.eql(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "JohnSmithhhh33",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "john.smithhhh33@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "passs",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Mr",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "28",
+							"type": "text"
+						},
+						{
+							"key": "birth_month",
+							"value": "02",
+							"type": "text"
+						},
+						{
+							"key": "birth_year",
+							"value": "1982",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "John",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "Smith",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "Arijus",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "Haugetuft",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "United States",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "269875",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "Illinois",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Chicago",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "+025897456315",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}createAccount",
+					"host": [
+						"{{base_url}}createAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE METHOD To Delete User Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const respData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON has responseCode and it's 200\", function () {\r",
+							"    pm.expect(respData).to.have.property('responseCode');\r",
+							"    pm.expect(respData.responseCode).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "john.smithhhh33@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "passs",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}deleteAccount",
+					"host": [
+						"{{base_url}}deleteAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT METHOD To Update User Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const respData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON has responseCode and it's 200\", function () {\r",
+							"    pm.expect(respData).to.have.property('responseCode');\r",
+							"    pm.expect(respData.responseCode).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "AlisaSmith",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "alisa.smith2@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "alisa",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Mrs",
+							"type": "text"
+						},
+						{
+							"key": "bith_day",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "bith_month",
+							"value": "May",
+							"type": "text"
+						},
+						{
+							"key": "bith_year",
+							"value": "1995",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "Alisa",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "Smith",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "Haugetuft",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "18",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "United States",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "254789",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "Illinois",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Chicago",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "+3259874563",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "Arijus",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}updateAccount",
+					"host": [
+						"{{base_url}}updateAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "??? NerodoGimtadienio GET user account detail by email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const respData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON has responseCode and it's 200\", function () {\r",
+							"    pm.expect(respData).to.have.property('responseCode');\r",
+							"    pm.expect(respData.responseCode).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('User exists', () => {\r",
+							"    pm.expect(respData).to.have.property('user').and.not.empty;\r",
+							"        let user = respData.user;\r",
+							"        pm.expect(user).to.have.property('id');\r",
+							"        pm.expect(user).to.have.property('name');\r",
+							"        pm.expect(user).to.have.property('email');\r",
+							"        pm.expect(user).to.have.property('title');\r",
+							"        pm.expect(user).to.have.property('birth_day');\r",
+							"        pm.expect(user).to.have.property('birth_month');\r",
+							"        pm.expect(user).to.have.property('birth_year');\r",
+							"        pm.expect(user).to.have.property('first_name');\r",
+							"        pm.expect(user).to.have.property('last_name');\r",
+							"        pm.expect(user).to.have.property('company');\r",
+							"        pm.expect(user).to.have.property('address1');\r",
+							"        pm.expect(user).to.have.property('address2');\r",
+							"        pm.expect(user).to.have.property('country');\r",
+							"        pm.expect(user).to.have.property('state');\r",
+							"        pm.expect(user).to.have.property('city');\r",
+							"        pm.expect(user).to.have.property('zipcode');\r",
+							"    });"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{base_url}}getUserDetailByEmail?email=alisa.smith2@gmail.com",
+					"host": [
+						"{{base_url}}getUserDetailByEmail"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "alisa.smith2@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
