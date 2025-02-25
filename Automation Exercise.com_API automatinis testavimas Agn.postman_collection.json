@@ -578,12 +578,12 @@
 									"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response JSON has responseCode and it's 405\", function () {\r",
+									"pm.test(\"Response JSON has responseCode and it's 400\", function () {\r",
 									"    pm.expect(respData).to.have.property('responseCode');\r",
-									"    pm.expect(respData.responseCode).to.eql(405);\r",
+									"    pm.expect(respData.responseCode).to.eql(400);\r",
 									"});\r",
 									"// 400 ar 405?\r",
-									"\r",
+									"// 400, nes taip raso neatidarius nuorodos\r",
 									"// API URL: https://automationexercise.com/api/verifyLogin\r",
 									"// Request Method: POST\r",
 									"// Request Parameter: password\r",
@@ -665,9 +665,9 @@
 									"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response JSON has responseCode and it's 204\", function () {\r",
+									"pm.test(\"Response JSON has responseCode and it's 405\", function () {\r",
 									"    pm.expect(respData).to.have.property('responseCode');\r",
-									"    pm.expect(respData.responseCode).to.eql(204);\r",
+									"    pm.expect(respData.responseCode).to.eql(405);\r",
 									"});"
 								],
 								"type": "text/javascript",
@@ -1032,154 +1032,6 @@
 			"name": "Update User Account",
 			"item": [
 				{
-					"name": "POST To Create/Register User Account Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const respData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Response time is less than 1100ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Response JSON has responseCode and it's 201\", function () {\r",
-									"    pm.expect(respData).to.have.property('responseCode');\r",
-									"    pm.expect(respData.responseCode).to.eql(201);\r",
-									"});\r",
-									"\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "John Smith",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "john.smith1@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "pass",
-									"type": "text"
-								},
-								{
-									"key": "title",
-									"value": "Mr",
-									"type": "text"
-								},
-								{
-									"key": "birth_date",
-									"value": "28",
-									"type": "text"
-								},
-								{
-									"key": "birth_month",
-									"value": "02",
-									"type": "text"
-								},
-								{
-									"key": "birth_year",
-									"value": "1982",
-									"type": "text"
-								},
-								{
-									"key": "firstname",
-									"value": "John",
-									"type": "text"
-								},
-								{
-									"key": "lastname",
-									"value": "Smith",
-									"type": "text"
-								},
-								{
-									"key": "company",
-									"value": "Arijus",
-									"type": "text"
-								},
-								{
-									"key": "address1",
-									"value": "Haugetuft",
-									"type": "text"
-								},
-								{
-									"key": "address2",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "country",
-									"value": "United States",
-									"type": "text"
-								},
-								{
-									"key": "zipcode",
-									"value": "269875",
-									"type": "text"
-								},
-								{
-									"key": "state",
-									"value": "Illinois",
-									"type": "text"
-								},
-								{
-									"key": "city",
-									"value": "Chicago",
-									"type": "text"
-								},
-								{
-									"key": "mobile_number",
-									"value": "+025897456315",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{base_url}}createAccount",
-							"host": [
-								"{{base_url}}createAccount"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "PUT METHOD To Update User Account",
 					"event": [
 						{
@@ -1236,7 +1088,7 @@
 								},
 								{
 									"key": "email",
-									"value": "alisa.smith@gmail.com",
+									"value": "john.smith1234@gmail.com",
 									"type": "text"
 								},
 								{
@@ -1320,77 +1172,6 @@
 							"raw": "{{base_url}}updateAccount",
 							"host": [
 								"{{base_url}}updateAccount"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE METHOD To Delete User Account Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const respData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Response time is less than 1100ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Response JSON has responseCode and it's 200\", function () {\r",
-									"    pm.expect(respData).to.have.property('responseCode');\r",
-									"    pm.expect(respData.responseCode).to.eql(200);\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "email",
-									"value": "alisa.smith@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "pass",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{base_url}}deleteAccount",
-							"host": [
-								"{{base_url}}deleteAccount"
 							]
 						}
 					},
