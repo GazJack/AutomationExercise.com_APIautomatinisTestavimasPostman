@@ -69,7 +69,8 @@
 									"        pm.expect(product.category.usertype.usertype).to.be.a('string');\r",
 									"        pm.expect(product.category.category).to.be.a('string');\r",
 									"    });\r",
-									"});"
+									"});\r",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -287,7 +288,7 @@
 			"name": "Search Product",
 			"item": [
 				{
-					"name": "**papildyti Post to Search Product",
+					"name": "Post to Search Product",
 					"event": [
 						{
 							"listen": "test",
@@ -295,18 +296,12 @@
 								"exec": [
 									"const respData = pm.response.json();\r",
 									"\r",
-									"\r",
-									"// išsiaiškinti visus zodzius \r",
 									"pm.test(\"A search term is mentioned in the product name or category\", () => {\r",
 									"    respData.products.forEach((product) => {\r",
 									"        const nameIncludesTop = product.name.toLowerCase().includes(pm.collectionVariables.get(\"search_product\"));\r",
 									"        const categoryIncludesTop = product.category.category.toLowerCase().includes(pm.collectionVariables.get(\"search_product\"));\r",
 									"    });\r",
 									"});\r",
-									"\r",
-									"\r",
-									"\r",
-									"\r",
 									"\r",
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -393,7 +388,7 @@
 					"response": []
 				},
 				{
-					"name": "??? POST To Search Product without search_product parameter",
+					"name": "POST To Search Product without search_product parameter",
 					"event": [
 						{
 							"listen": "test",
@@ -409,35 +404,9 @@
 									"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response JSON has responseCode and it's 200\", function () {\r",
+									"pm.test(\"Response JSON has responseCode and it's 400\", function () {\r",
 									"    pm.expect(respData).to.have.property('responseCode');\r",
-									"    pm.expect(respData.responseCode).to.eql(200);\r",
-									"});\r",
-									"\r",
-									"pm.test('Products are not empty', () => {\r",
-									"    pm.expect(respData.products).to.be.an('array').that.is.not.empty;\r",
-									"    respData.products.forEach((product) => {\r",
-									"        pm.expect(product).to.have.property('id');\r",
-									"        pm.expect(product).to.have.property('name');\r",
-									"        pm.expect(product).to.have.property('price');\r",
-									"        pm.expect(product).to.have.property('brand');\r",
-									"        pm.expect(product).to.have.property('category');\r",
-									"        pm.expect(product.category).to.have.property('usertype');\r",
-									"        pm.expect(product.category).to.have.property('category');\r",
-									"    })\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Products in list have correct types of properties values\", () => {\r",
-									"    respData.products.forEach((product) => {  \r",
-									"        pm.expect(product.id).to.be.a('number');\r",
-									"        pm.expect(product.name).to.be.a('string');\r",
-									"        pm.expect(product.price).to.be.a('string');\r",
-									"        pm.expect(product.brand).to.be.a('string');\r",
-									"        pm.expect(product.category).to.be.a('object');\r",
-									"        pm.expect(product.category.usertype).to.be.a('object');\r",
-									"        pm.expect(product.category.usertype.usertype).to.be.a('string');\r",
-									"        pm.expect(product.category.category).to.be.a('string');\r",
-									"    });\r",
+									"    pm.expect(respData.responseCode).to.eql(400);\r",
 									"});\r",
 									""
 								],
@@ -472,7 +441,8 @@
 								{
 									"key": "search_product",
 									"value": "top",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -562,7 +532,7 @@
 					"response": []
 				},
 				{
-					"name": "??? ReikiaTikPassIrManNe405GaunasiPOST To Verify Login without email parameter",
+					"name": "POST To Verify Login without email parameter",
 					"event": [
 						{
 							"listen": "test",
@@ -582,19 +552,6 @@
 									"    pm.expect(respData).to.have.property('responseCode');\r",
 									"    pm.expect(respData.responseCode).to.eql(400);\r",
 									"});\r",
-									"// 400 ar 405?\r",
-									"// 400, nes taip raso neatidarius nuorodos\r",
-									"// API URL: https://automationexercise.com/api/verifyLogin\r",
-									"// Request Method: POST\r",
-									"// Request Parameter: password\r",
-									"// Response Code: 400\r",
-									"// Response Message: Bad request, email or password parameter is missing in POST request.\r",
-									"\r",
-									"// paspaudus nuoroda:\r",
-									"// {\"responseCode\": 405, \"message\": \"This request method is not supported.\"}\r",
-									"\r",
-									"\r",
-									"\r",
 									""
 								],
 								"type": "text/javascript",
@@ -649,7 +606,7 @@
 					"response": []
 				},
 				{
-					"name": "??? cia kazkas turejo ivykt? error 405 DELETE To Verify Login",
+					"name": "DELETE To Verify Login",
 					"event": [
 						{
 							"listen": "test",
@@ -701,12 +658,14 @@
 								{
 									"key": "email",
 									"value": "john.smith2@gmail.com",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "password",
 									"value": "passs",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -735,6 +694,82 @@
 		},
 		{
 			"name": "Verify Login with invalid details",
+			"item": [
+				{
+					"name": "POST To Verify Login with invalid details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 1100ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response JSON has responseCode and it's 404\", function () {\r",
+									"    pm.expect(respData).to.have.property('responseCode');\r",
+									"    pm.expect(respData.responseCode).to.eql(404);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "john.smiths@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}verifyLogin",
+							"host": [
+								"{{base_url}}verifyLogin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update User Account",
 			"item": [
 				{
 					"name": "POST To Create/Register User Account",
@@ -790,12 +825,12 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "JohnSmithy",
+									"value": "JohnSmith",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "john.smithy@gmail.com",
+									"value": "john.smith1982@gmail.com",
 									"type": "text"
 								},
 								{
@@ -885,153 +920,6 @@
 					"response": []
 				},
 				{
-					"name": "POST To Verify Login with invalid details",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const respData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Response time is less than 1100ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Response JSON has responseCode and it's 200\", function () {\r",
-									"    pm.expect(respData).to.have.property('responseCode');\r",
-									"    pm.expect(respData.responseCode).to.eql(200);\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "email",
-									"value": "john.smithy@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "pass",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{base_url}}verifyLogin",
-							"host": [
-								"{{base_url}}verifyLogin"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE METHOD To Delete User Account",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const respData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Response time is less than 1100ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Response JSON has responseCode and it's 200\", function () {\r",
-									"    pm.expect(respData).to.have.property('responseCode');\r",
-									"    pm.expect(respData.responseCode).to.eql(200);\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "email",
-									"value": "john.smithy@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "pass",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{base_url}}deleteAccount",
-							"host": [
-								"{{base_url}}deleteAccount"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Update User Account",
-			"item": [
-				{
 					"name": "PUT METHOD To Update User Account",
 					"event": [
 						{
@@ -1088,7 +976,7 @@
 								},
 								{
 									"key": "email",
-									"value": "john.smith1234@gmail.com",
+									"value": "john.smith1982@gmail.com",
 									"type": "text"
 								},
 								{
@@ -1172,6 +1060,77 @@
 							"raw": "{{base_url}}updateAccount",
 							"host": [
 								"{{base_url}}updateAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE METHOD To Delete User Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 1100ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response JSON has responseCode and it's 200\", function () {\r",
+									"    pm.expect(respData).to.have.property('responseCode');\r",
+									"    pm.expect(respData.responseCode).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "john.smith1982@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}deleteAccount",
+							"host": [
+								"{{base_url}}deleteAccount"
 							]
 						}
 					},
@@ -1391,6 +1350,7 @@
 									"    pm.expect(respData.user.city).to.be.a('string');\r",
 									"    pm.expect(respData.user.zipcode).to.be.a('string');\r",
 									"});\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript",

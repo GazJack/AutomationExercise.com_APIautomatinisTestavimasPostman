@@ -1,22 +1,22 @@
 {
-	"id": "e2d625af-3759-4a23-b897-48add64c7a79",
+	"id": "fc0b3d74-1d31-4ca9-8831-2c8f1344b4bf",
 	"name": "Automation Exercise.com_API automatinis testavimas Agn",
-	"timestamp": "2025-02-25T11:08:03.902Z",
+	"timestamp": "2025-03-03T16:37:54.658Z",
 	"collection_id": "41095196-abcc2fb3-418d-4093-8c65-7273892f85b6",
 	"folder_id": 0,
 	"environment_id": "41095196-a50fadb3-8234-41e8-b0d0-b19e42ec99d6",
-	"totalPass": 61,
+	"totalPass": 59,
 	"delay": 0,
 	"persist": true,
 	"status": "finished",
-	"startedAt": "2025-02-25T11:07:57.153Z",
+	"startedAt": "2025-03-03T16:37:44.266Z",
 	"totalFail": 0,
 	"results": [
 		{
 			"id": "6a85e9ac-df5a-41a3-8644-76082558883e",
 			"name": "Get All Products List",
 			"url": "productsList",
-			"time": 910,
+			"time": 890,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -56,7 +56,7 @@
 				}
 			},
 			"times": [
-				910
+				890
 			],
 			"allTests": [
 				{
@@ -73,7 +73,7 @@
 			"id": "9beb6290-c914-497b-83e2-114839cbb822",
 			"name": "Post All Products List",
 			"url": "https://automationexercise.com/api/productsList",
-			"time": 239,
+			"time": 292,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -98,7 +98,7 @@
 				}
 			},
 			"times": [
-				239
+				292
 			],
 			"allTests": [
 				{
@@ -112,7 +112,7 @@
 			"id": "9ec4bb92-3310-4e90-a6d5-d4c4f7b20a45",
 			"name": "Get All Brands List",
 			"url": "https://automationexercise.com/api/brandsList",
-			"time": 239,
+			"time": 253,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -152,7 +152,7 @@
 				}
 			},
 			"times": [
-				239
+				253
 			],
 			"allTests": [
 				{
@@ -169,7 +169,7 @@
 			"id": "018c0446-55e8-4a26-9793-f9687e22bac0",
 			"name": "Put to All Brands List",
 			"url": "https://automationexercise.com/api/brandsList",
-			"time": 235,
+			"time": 357,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -194,7 +194,7 @@
 				}
 			},
 			"times": [
-				235
+				357
 			],
 			"allTests": [
 				{
@@ -206,9 +206,9 @@
 		},
 		{
 			"id": "c0f0cb74-a06a-4fd6-af20-f18d3780d9f4",
-			"name": "**papildyti Post to Search Product",
+			"name": "Post to Search Product",
 			"url": "https://automationexercise.com/api/searchProduct",
-			"time": 255,
+			"time": 275,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -248,7 +248,7 @@
 				}
 			},
 			"times": [
-				255
+				275
 			],
 			"allTests": [
 				{
@@ -263,99 +263,9 @@
 		},
 		{
 			"id": "6373d5bb-0f07-41d4-be73-fa65d0a6685e",
-			"name": "??? POST To Search Product without search_product parameter",
+			"name": "POST To Search Product without search_product parameter",
 			"url": "https://automationexercise.com/api/searchProduct",
-			"time": 425,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"Response time is less than 1100ms": true,
-				"Response JSON has responseCode and it's 200": true,
-				"Products are not empty": true,
-				"Products in list have correct types of properties values": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 1100ms": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response JSON has responseCode and it's 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Products are not empty": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Products in list have correct types of properties values": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				425
-			],
-			"allTests": [
-				{
-					"Status code is 200": true,
-					"Response time is less than 1100ms": true,
-					"Response JSON has responseCode and it's 200": true,
-					"Products are not empty": true,
-					"Products in list have correct types of properties values": true
-				}
-			]
-		},
-		{
-			"id": "5785b51f-2452-4bd8-aef7-fd9aa90a01d2",
-			"name": "POST To Verify Login with valid details",
-			"url": "https://automationexercise.com/api/verifyLogin",
-			"time": 250,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"Response time is less than 1100ms": true,
-				"Response JSON has responseCode and it's 200": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 1100ms": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response JSON has responseCode and it's 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				250
-			],
-			"allTests": [
-				{
-					"Status code is 200": true,
-					"Response time is less than 1100ms": true,
-					"Response JSON has responseCode and it's 200": true
-				}
-			]
-		},
-		{
-			"id": "bd224688-2ac0-4291-8f8c-059ee6d6014c",
-			"name": "??? ReikiaTikPassIrManNe405GaunasiPOST To Verify Login without email parameter",
-			"url": "https://automationexercise.com/api/verifyLogin",
-			"time": 261,
+			"time": 248,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -380,7 +290,85 @@
 				}
 			},
 			"times": [
-				261
+				248
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 1100ms": true,
+					"Response JSON has responseCode and it's 400": true
+				}
+			]
+		},
+		{
+			"id": "5785b51f-2452-4bd8-aef7-fd9aa90a01d2",
+			"name": "POST To Verify Login with valid details",
+			"url": "https://automationexercise.com/api/verifyLogin",
+			"time": 249,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 1100ms": true,
+				"Response JSON has responseCode and it's 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1100ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response JSON has responseCode and it's 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				249
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 1100ms": true,
+					"Response JSON has responseCode and it's 200": true
+				}
+			]
+		},
+		{
+			"id": "bd224688-2ac0-4291-8f8c-059ee6d6014c",
+			"name": "POST To Verify Login without email parameter",
+			"url": "https://automationexercise.com/api/verifyLogin",
+			"time": 1069,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 1100ms": true,
+				"Response JSON has responseCode and it's 400": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1100ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response JSON has responseCode and it's 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1069
 			],
 			"allTests": [
 				{
@@ -392,9 +380,9 @@
 		},
 		{
 			"id": "f53f291f-a8dd-45c5-9ede-262172428deb",
-			"name": "??? cia kazkas turejo ivykt? error 405 DELETE To Verify Login",
+			"name": "DELETE To Verify Login",
 			"url": "https://automationexercise.com/api/verifyLogin",
-			"time": 253,
+			"time": 964,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -419,7 +407,7 @@
 				}
 			},
 			"times": [
-				253
+				964
 			],
 			"allTests": [
 				{
@@ -430,10 +418,49 @@
 			]
 		},
 		{
-			"id": "765262dd-3bc7-4ede-a676-5d7c70dea2b9",
+			"id": "35c78216-e22e-450b-9850-0ea996dbbc8c",
+			"name": "POST To Verify Login with invalid details",
+			"url": "https://automationexercise.com/api/verifyLogin",
+			"time": 856,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 1100ms": true,
+				"Response JSON has responseCode and it's 404": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1100ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response JSON has responseCode and it's 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				856
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 1100ms": true,
+					"Response JSON has responseCode and it's 404": true
+				}
+			]
+		},
+		{
+			"id": "4a919aba-690f-49c0-a1fb-b6984a6c515c",
 			"name": "POST To Create/Register User Account",
 			"url": "https://automationexercise.com/api/createAccount",
-			"time": 279,
+			"time": 952,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -458,7 +485,7 @@
 				}
 			},
 			"times": [
-				279
+				952
 			],
 			"allTests": [
 				{
@@ -469,88 +496,10 @@
 			]
 		},
 		{
-			"id": "35c78216-e22e-450b-9850-0ea996dbbc8c",
-			"name": "POST To Verify Login with invalid details",
-			"url": "https://automationexercise.com/api/verifyLogin",
-			"time": 245,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"Response time is less than 1100ms": true,
-				"Response JSON has responseCode and it's 200": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 1100ms": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response JSON has responseCode and it's 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				245
-			],
-			"allTests": [
-				{
-					"Status code is 200": true,
-					"Response time is less than 1100ms": true,
-					"Response JSON has responseCode and it's 200": true
-				}
-			]
-		},
-		{
-			"id": "b741d8d3-87c1-4abd-89b5-b03dc6f8d9ae",
-			"name": "DELETE METHOD To Delete User Account",
-			"url": "https://automationexercise.com/api/deleteAccount",
-			"time": 268,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"Response time is less than 1100ms": true,
-				"Response JSON has responseCode and it's 200": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 1100ms": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response JSON has responseCode and it's 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				268
-			],
-			"allTests": [
-				{
-					"Status code is 200": true,
-					"Response time is less than 1100ms": true,
-					"Response JSON has responseCode and it's 200": true
-				}
-			]
-		},
-		{
 			"id": "4eb5b6fc-8292-4e1b-9498-3a558a299403",
 			"name": "PUT METHOD To Update User Account",
 			"url": "https://automationexercise.com/api/updateAccount",
-			"time": 379,
+			"time": 804,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -575,7 +524,46 @@
 				}
 			},
 			"times": [
-				379
+				804
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 1100ms": true,
+					"Response JSON has responseCode and it's 200": true
+				}
+			]
+		},
+		{
+			"id": "5d34521a-2a52-4fcb-89b3-3c54068ed7d7",
+			"name": "DELETE METHOD To Delete User Account",
+			"url": "https://automationexercise.com/api/deleteAccount",
+			"time": 246,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 1100ms": true,
+				"Response JSON has responseCode and it's 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1100ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response JSON has responseCode and it's 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				246
 			],
 			"allTests": [
 				{
@@ -589,7 +577,7 @@
 			"id": "0bda61af-b8f6-40dd-a0ef-2a53fa472285",
 			"name": "POST To Create/Register User Account Copy 2",
 			"url": "https://automationexercise.com/api/createAccount",
-			"time": 273,
+			"time": 287,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -614,7 +602,7 @@
 				}
 			},
 			"times": [
-				273
+				287
 			],
 			"allTests": [
 				{
@@ -628,7 +616,7 @@
 			"id": "0f569621-65d0-49ad-8cc1-4fed1390c808",
 			"name": "GET user account detail by email",
 			"url": "https://automationexercise.com/api/getUserDetailByEmail?email=layla.smith@gmail.com",
-			"time": 254,
+			"time": 236,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -663,7 +651,7 @@
 				}
 			},
 			"times": [
-				254
+				236
 			],
 			"allTests": [
 				{
@@ -679,7 +667,7 @@
 			"id": "8b46a807-6f92-42f2-a398-c2867b1c576f",
 			"name": "DELETE METHOD To Delete User Account Copy 2",
 			"url": "https://automationexercise.com/api/deleteAccount",
-			"time": 243,
+			"time": 245,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -704,7 +692,7 @@
 				}
 			},
 			"times": [
-				243
+				245
 			],
 			"allTests": [
 				{
@@ -716,7 +704,7 @@
 		}
 	],
 	"count": 1,
-	"totalTime": 5008,
+	"totalTime": 8223,
 	"collection": {
 		"requests": [
 			{
@@ -756,20 +744,20 @@
 				"method": "DELETE"
 			},
 			{
-				"id": "765262dd-3bc7-4ede-a676-5d7c70dea2b9",
-				"method": "POST"
-			},
-			{
 				"id": "35c78216-e22e-450b-9850-0ea996dbbc8c",
 				"method": "POST"
 			},
 			{
-				"id": "b741d8d3-87c1-4abd-89b5-b03dc6f8d9ae",
-				"method": "DELETE"
+				"id": "4a919aba-690f-49c0-a1fb-b6984a6c515c",
+				"method": "POST"
 			},
 			{
 				"id": "4eb5b6fc-8292-4e1b-9498-3a558a299403",
 				"method": "PUT"
+			},
+			{
+				"id": "5d34521a-2a52-4fcb-89b3-3c54068ed7d7",
+				"method": "DELETE"
 			},
 			{
 				"id": "0bda61af-b8f6-40dd-a0ef-2a53fa472285",
