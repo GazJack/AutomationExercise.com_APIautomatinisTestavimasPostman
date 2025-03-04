@@ -14,7 +14,7 @@ The repository includes a Postman collection that tests various API endpoints fo
 
 ## :rocket: Project Setup
 
-### 1. Clone the repository
+### Installation
 To start using this repository, clone it to your local machine:
 ```bash
 
