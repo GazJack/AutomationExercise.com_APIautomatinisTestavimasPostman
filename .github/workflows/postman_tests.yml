@@ -35,9 +35,7 @@ jobs:
       - name: Install Newman (Postman CLI)
         run: npm install newman -g
 
-      - name: Run Postman collection
-        run: newman run "AutomationExercise.com_APIautomatinisTestavimasAgn.postman_collection.json"
-        
+      - name: Run Postman collection        
         run: newman run "AutomationExercise.com_APIautomatinisTestavimasAgn.postman_collection.json" -e "automationexercize.com.postman_environment.json"
         
 
